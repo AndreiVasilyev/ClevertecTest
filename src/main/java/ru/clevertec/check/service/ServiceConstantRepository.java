@@ -1,0 +1,9 @@
+package main.java.ru.clevertec.check.service;
+
+public class ServiceConstantRepository {
+    public static final String CSV_PRODUCT_FILE_PATH = "./src/main/resources/products.csv";
+    public static final String CSV_DISCOUNT_CARD_FILE_PATH = "./src/main/resources/discountCards.csv";
+
+    private ServiceConstantRepository() {
+    }
+}
