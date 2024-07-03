@@ -13,8 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static main.java.ru.clevertec.check.service.ServiceConstantRepository.CSV_DISCOUNT_CARD_FILE_PATH;
-import static main.java.ru.clevertec.check.service.ServiceConstantRepository.CSV_PRODUCT_FILE_PATH;
+import static main.java.ru.clevertec.check.service.ServiceConstantRepository.*;
 
 public class CsvReaderServiceImpl implements CsvReaderService {
     @Override

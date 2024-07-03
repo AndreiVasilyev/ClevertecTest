@@ -2,6 +2,7 @@ package main.java.ru.clevertec.check.entity;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Check {
@@ -10,6 +11,8 @@ public class Check {
     DiscountCard discountCard;
 
     public Check() {
+        dateTime = LocalDateTime.now();
+        products = new HashMap<>();
     }
 
     public Check(LocalDateTime dateTime, HashMap<Product, Integer> products, DiscountCard discountCard) {
@@ -40,6 +43,26 @@ public class Check {
 
     public void setDiscountCard(DiscountCard discountCard) {
         this.discountCard = discountCard;
+    }
+
+    public Double calculateTotalPrice() {
+        double totalPrice = 0.0;
+        for (Map.Entry<Product, Integer> product : products.entrySet()) {
+            totalPrice += product.getKey().getPrice() * product.getValue();
+        }
+        return totalPrice;
+    }
+
+    public Double calculateTotalDiscount() {
+        double totalDiscount = 0.0;
+        for (Map.Entry<Product, Integer> product : products.entrySet()) {
+            if (product.getKey().isWholesaleProduct()) {
+                totalDiscount += product.getKey().getPrice() * product.getValue() * 0.1;
+            } else if (discountCard != null) {
+                totalDiscount += product.getKey().getPrice() * product.getValue() * discountCard.getDiscountAmount() / 100;
+            }
+        }
+        return totalDiscount;
     }
 
     @Override
