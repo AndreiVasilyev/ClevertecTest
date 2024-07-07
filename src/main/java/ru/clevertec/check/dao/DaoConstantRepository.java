@@ -5,6 +5,4 @@ public class DaoConstantRepository {
 
     private DaoConstantRepository() {
     }
-
-    ;
 }

@@ -55,11 +55,9 @@ public class DiscountCard {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("DiscountCard{");
-        sb.append("id=").append(id);
-        sb.append(", number=").append(number);
-        sb.append(", discountAmount=").append(discountAmount);
-        sb.append('}');
-        return sb.toString();
+        return "DiscountCard{" + "id=" + id +
+                ", number=" + number +
+                ", discountAmount=" + discountAmount +
+                '}';
     }
 }

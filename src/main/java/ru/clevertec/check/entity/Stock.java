@@ -37,9 +37,8 @@ public class Stock {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Stock{");
-        sb.append("products=").append(products);
-        sb.append('}');
-        return sb.toString();
+        return "Stock{" +
+                "products=" + products +
+                '}';
     }
 }

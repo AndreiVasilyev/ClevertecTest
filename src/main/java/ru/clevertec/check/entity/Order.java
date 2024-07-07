@@ -56,11 +56,10 @@ public class Order {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Order{");
-        sb.append("products=").append(products);
-        sb.append(", discountCardNumber=").append(discountCardNumber);
-        sb.append(", balanceDebitCard=").append(balanceDebitCard);
-        sb.append('}');
-        return sb.toString();
+        return "Order{" +
+                "products=" + products +
+                ", discountCardNumber=" + discountCardNumber +
+                ", balanceDebitCard=" + balanceDebitCard +
+                '}';
     }
 }

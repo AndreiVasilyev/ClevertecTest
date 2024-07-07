@@ -1,6 +1,7 @@
 package main.java.ru.clevertec.check.dao.file.impl;
 
-import main.java.ru.clevertec.check.dao.file.CsvReader;
+import main.java.ru.clevertec.check.dao.file.CsvFileReader;
+import main.java.ru.clevertec.check.exception.InternalServerException;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -9,9 +10,9 @@ import java.util.List;
 
 import static main.java.ru.clevertec.check.dao.DaoConstantRepository.CSV_VALUE_SEPARATOR;
 
-public class CsvReaderImpl implements CsvReader {
+public class CsvFileReaderImpl implements CsvFileReader {
     @Override
-    public List<List<String>> read(String filePath) {
+    public List<List<String>> read(String filePath) throws InternalServerException {
         List<List<String>> data = new ArrayList<>();
         File csvFile = new File(filePath);
         if (csvFile.isFile()) {
@@ -23,9 +24,10 @@ public class CsvReaderImpl implements CsvReader {
                             .toList());
                 }
             } catch (IOException e) {
-                throw new RuntimeException(e);
-                //TODO handle exception
+                throw new InternalServerException();
             }
+        } else {
+            throw new InternalServerException();
         }
         return data;
     }

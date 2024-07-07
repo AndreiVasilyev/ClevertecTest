@@ -65,12 +65,11 @@ public class Product {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Product{");
-        sb.append("id=").append(id);
-        sb.append(", description='").append(description).append('\'');
-        sb.append(", price=").append(price);
-        sb.append(", isWholesaleProduct=").append(isWholesaleProduct);
-        sb.append('}');
-        return sb.toString();
+        return "Product{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", isWholesaleProduct=" + isWholesaleProduct +
+                '}';
     }
 }

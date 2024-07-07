@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
+
+import static main.java.ru.clevertec.check.view.ViewConstantRepository.PRODUCTS_TEMPLATE;
 
 public class Check {
     LocalDateTime dateTime;
@@ -45,24 +48,41 @@ public class Check {
         this.discountCard = discountCard;
     }
 
-    public Double calculateTotalPrice() {
-        double totalPrice = 0.0;
-        for (Map.Entry<Product, Integer> product : products.entrySet()) {
-            totalPrice += product.getKey().getPrice() * product.getValue();
-        }
-        return totalPrice;
+    public HashMap<Product, Double> getTotals() {
+        return (HashMap<Product, Double>) products.entrySet()
+                .stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, v -> (double) (v.getKey().getPrice()) * v.getValue()));
     }
 
-    public Double calculateTotalDiscount() {
-        double totalDiscount = 0.0;
-        for (Map.Entry<Product, Integer> product : products.entrySet()) {
-            if (product.getKey().isWholesaleProduct()) {
-                totalDiscount += product.getKey().getPrice() * product.getValue() * 0.1;
-            } else if (discountCard != null) {
-                totalDiscount += product.getKey().getPrice() * product.getValue() * discountCard.getDiscountAmount() / 100;
-            }
-        }
-        return totalDiscount;
+    public HashMap<Product, Double> getDiscounts() {
+        return (HashMap<Product, Double>) products.entrySet()
+                .stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, pair -> {
+                    double discount = 0.0;
+                    if (pair.getKey().isWholesaleProduct() && pair.getValue() > 4) {
+                        discount = 0.1;
+                    } else if (discountCard != null) {
+                        discount = discountCard.getDiscountAmount() / 100.00;
+                    }
+                    return pair.getKey().getPrice() * pair.getValue() * discount;
+                }));
+    }
+
+
+    public Double getTotalPrice() {
+        return getTotals()
+                .values()
+                .stream()
+                .mapToDouble(Double::doubleValue)
+                .sum();
+    }
+
+    public Double getTotalDiscount() {
+        return getDiscounts()
+                .values()
+                .stream()
+                .mapToDouble(Double::doubleValue)
+                .sum();
     }
 
     @Override
@@ -80,11 +100,10 @@ public class Check {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Check{");
-        sb.append("dateTime=").append(dateTime);
-        sb.append(", products=").append(products);
-        sb.append(", discountCard=").append(discountCard);
-        sb.append('}');
-        return sb.toString();
+        return "Check{" +
+                "dateTime=" + dateTime +
+                ", products=" + products +
+                ", discountCard=" + discountCard +
+                '}';
     }
 }
