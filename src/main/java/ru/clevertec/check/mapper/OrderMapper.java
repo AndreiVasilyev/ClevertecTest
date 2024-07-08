@@ -10,10 +10,7 @@ import java.util.HashMap;
 import static main.java.ru.clevertec.check.mapper.MapperConstantRepository.*;
 
 public class OrderMapper {
-    public Order map(String[] values) throws BadRequestException {
-        if (!Validator.getInstance().isInputDataValid(values)) {
-            throw new BadRequestException();
-        }
+    public Order map(String[] values) {
         Order order = new Order();
         order.setProducts(new HashMap<>());
         Arrays.stream(values).forEach(value -> {

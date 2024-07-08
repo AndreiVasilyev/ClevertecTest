@@ -4,6 +4,7 @@ import main.java.ru.clevertec.check.entity.*;
 import main.java.ru.clevertec.check.exception.BadRequestException;
 import main.java.ru.clevertec.check.exception.InternalServerException;
 import main.java.ru.clevertec.check.exception.NotEnoughMoneyException;
+import main.java.ru.clevertec.check.mapper.FilePathMapper;
 import main.java.ru.clevertec.check.mapper.OrderMapper;
 import main.java.ru.clevertec.check.service.CsvFileService;
 import main.java.ru.clevertec.check.service.ServiceProvider;
@@ -20,11 +21,10 @@ public class CheckOperator {
     private static CheckOperator instance;
     private Stock stock;
     private List<DiscountCard> discountCards;
+    private String saveToFile;
 
     private CheckOperator() throws InternalServerException {
-        CsvFileService csvFileService = ServiceProvider.getInstance().getCsvFileService();
-        stock = csvFileService.readStock();
-        discountCards = csvFileService.readAllDiscountCards();
+        discountCards = ServiceProvider.getInstance().getCsvFileService().readAllDiscountCards();
     }
 
     public static CheckOperator getInstance() throws InternalServerException {
@@ -34,7 +34,12 @@ public class CheckOperator {
         return instance;
     }
 
-    public Check create(String[] args) throws BadRequestException, NotEnoughMoneyException {
+    public Check create(String[] args) throws BadRequestException, NotEnoughMoneyException, InternalServerException {
+        if (!Validator.getInstance().isInputDataValid(args)) {
+            throw new BadRequestException();
+        }
+        saveToFile=FilePathMapper.mapSaveToFile(args);
+        stock = ServiceProvider.getInstance().getCsvFileService().readStock(args);
         Order order = new OrderMapper().map(args);
         Check check = new Check();
         addProductsToCheck(check, order);
@@ -47,7 +52,7 @@ public class CheckOperator {
 
     public void save(Check check) throws InternalServerException {
         CsvFileService csvFileService = ServiceProvider.getInstance().getCsvFileService();
-        csvFileService.saveCheck(check);
+        csvFileService.saveCheck(check,saveToFile);
     }
 
     public void printToConsole(Check check) {

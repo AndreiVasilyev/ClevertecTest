@@ -14,7 +14,7 @@ public class CheckRunner {
             checkOperator.save(check);
             checkOperator.printToConsole(check);
         } catch (BadRequestException | NotEnoughMoneyException | InternalServerException e) {
-            ExceptionHandler.getInstance().handle(e);
+            ExceptionHandler.getInstance().handle(e,args);
         }
     }
 }

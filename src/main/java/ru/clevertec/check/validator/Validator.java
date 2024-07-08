@@ -20,8 +20,12 @@ public class Validator {
 
     public boolean isInputDataValid(String[] data) {
         if (data == null || data.length == 0) return false;
+        String dataString = String.join(ARGUMENTS_SEPARATOR, data);
         if (!data[0].matches(PRODUCT_PARAMETER_REGEX)) return false;
-        if (!String.join(ARGUMENTS_SEPARATOR, data).contains(BALANCE_DEBIT_CARD_PARAM_PREFIX)) return false;
+        if (!dataString.contains(BALANCE_DEBIT_CARD_PARAM_PREFIX)
+                || !dataString.contains(PATH_TO_FILE_PARAM_PREFIX)
+                || !dataString.contains(SAVE_TO_FILE_PARAM_PREFIX))
+            return false;
         for (String parameter : data) {
             if (parameter.trim().startsWith(BALANCE_DEBIT_CARD_PARAM_PREFIX)) {
                 String[] parsedParam = parameter.split(PARAMETERS_SEPARATOR);

@@ -9,6 +9,7 @@ import main.java.ru.clevertec.check.entity.Product;
 import main.java.ru.clevertec.check.entity.Stock;
 import main.java.ru.clevertec.check.exception.InternalServerException;
 import main.java.ru.clevertec.check.mapper.DiscountCardMapper;
+import main.java.ru.clevertec.check.mapper.FilePathMapper;
 import main.java.ru.clevertec.check.mapper.ProductMapper;
 import main.java.ru.clevertec.check.service.CsvFileService;
 import main.java.ru.clevertec.check.view.FileViewFormatter;
@@ -23,9 +24,10 @@ import static main.java.ru.clevertec.check.service.ServiceConstantRepository.*;
 public class CsvFileServiceImpl implements CsvFileService {
 
     @Override
-    public Stock readStock() throws InternalServerException {
+    public Stock readStock(String[] args) throws InternalServerException {
+        String pathToFile = FilePathMapper.mapPathToFile(args);
         CsvFileReader csvFileReader = DaoProvider.getInstance().getCsvReader();
-        List<List<String>> lines = csvFileReader.read(CSV_PRODUCT_FILE_PATH);
+        List<List<String>> lines = csvFileReader.read(pathToFile);
         lines.removeFirst();
         Map<Product, Integer> products = lines.stream()
                 .collect(Collectors.toMap(ProductMapper::map, val -> Integer.parseInt(val.get(3))));
@@ -43,7 +45,7 @@ public class CsvFileServiceImpl implements CsvFileService {
     }
 
     @Override
-    public void saveCheck(Check check) throws InternalServerException {
+    public void saveCheck(Check check, String saveToFile) throws InternalServerException {
         FileViewFormatter fileViewFormatter = new FileViewFormatter();
         CsvFileWriter csvFileWriter = DaoProvider.getInstance().getCsvFileWriter();
         List<String> lines = new ArrayList<>();
@@ -53,16 +55,16 @@ public class CsvFileServiceImpl implements CsvFileService {
             fileViewFormatter.formatDiscountCard(lines, check.getDiscountCard());
         }
         fileViewFormatter.formatTotalValues(lines, check);
-        csvFileWriter.write(lines, CSV_RESULT_FILE_PATH);
+        csvFileWriter.write(lines, saveToFile);
     }
 
     @Override
-    public void saveError(Exception e) throws InternalServerException {
+    public void saveError(Exception e, String saveToFile) throws InternalServerException {
         FileViewFormatter fileViewFormatter = new FileViewFormatter();
         CsvFileWriter csvFileWriter = DaoProvider.getInstance().getCsvFileWriter();
         List<String> lines = new ArrayList<>();
         fileViewFormatter.formatError(lines, e);
-        csvFileWriter.write(lines, CSV_RESULT_FILE_PATH);
+        csvFileWriter.write(lines, saveToFile);
     }
 
 }

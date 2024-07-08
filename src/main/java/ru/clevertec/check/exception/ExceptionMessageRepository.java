@@ -5,6 +5,7 @@ public class ExceptionMessageRepository {
     public static String BAD_REQUEST = "BAD REQUEST";
     public static String INTERNAL_SERVER_ERROR = "INTERNAL SERVER ERROR";
 
+
     private ExceptionMessageRepository() {
     }
 

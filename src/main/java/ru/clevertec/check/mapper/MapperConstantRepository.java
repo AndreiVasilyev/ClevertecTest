@@ -10,6 +10,10 @@ public class MapperConstantRepository {
     public static String PARAMETERS_SEPARATOR = "=";
     public static String DISCOUNT_CARD_PARAM_PREFIX = "discountCard";
     public static String BALANCE_DEBIT_CARD_PARAM_PREFIX = "balanceDebitCard";
+    public static String PATH_TO_FILE_PARAM_PREFIX = "pathToFile";
+    public static String SAVE_TO_FILE_PARAM_PREFIX = "saveToFile";
+    public static String EMPTY_STRING = "";
+
 
     private MapperConstantRepository() {
     }

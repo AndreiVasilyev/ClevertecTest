@@ -9,11 +9,11 @@ import java.util.List;
 
 public interface CsvFileService {
 
-    Stock readStock() throws InternalServerException;
+    Stock readStock(String[] args) throws InternalServerException;
 
     List<DiscountCard> readAllDiscountCards() throws InternalServerException;
 
-    void saveCheck(Check check) throws InternalServerException;
+    void saveCheck(Check check, String saveToFile) throws InternalServerException;
 
-    void saveError(Exception e) throws InternalServerException;
+    void saveError(Exception e, String saveToFile) throws InternalServerException;
 }

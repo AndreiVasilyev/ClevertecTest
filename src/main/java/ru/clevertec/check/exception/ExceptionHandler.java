@@ -1,8 +1,16 @@
 package main.java.ru.clevertec.check.exception;
 
+import main.java.ru.clevertec.check.mapper.FilePathMapper;
 import main.java.ru.clevertec.check.service.CsvFileService;
 import main.java.ru.clevertec.check.service.ServiceProvider;
 import main.java.ru.clevertec.check.view.ConsolePrinter;
+
+import java.util.Arrays;
+
+import static main.java.ru.clevertec.check.exception.ExceptionMessageRepository.SAVE_TO_FILE_PARAM_PREFIX;
+import static main.java.ru.clevertec.check.mapper.MapperConstantRepository.PARAMETERS_SEPARATOR;
+import static main.java.ru.clevertec.check.mapper.MapperConstantRepository.SAVE_TO_FILE_PARAM_PREFIX;
+import static main.java.ru.clevertec.check.service.ServiceConstantRepository.CSV_RESULT_FILE_PATH;
 
 public class ExceptionHandler {
 
@@ -15,10 +23,14 @@ public class ExceptionHandler {
         return instance;
     }
 
-    public void handle(Exception e) {
-        CsvFileService csvFileService= ServiceProvider.getInstance().getCsvFileService();
+    public void handle(Exception e, String[] args) {
+        CsvFileService csvFileService = ServiceProvider.getInstance().getCsvFileService();
         try {
-            csvFileService.saveError(e);
+            String saveToFile = FilePathMapper.mapSaveToFile(args);
+            if(saveToFile.isBlank()){
+                saveToFile=CSV_RESULT_FILE_PATH;
+            }
+            csvFileService.saveError(e, saveToFile);
             ConsolePrinter.getInstance().printErrorToConsole(e);
         } catch (InternalServerException ex) {
             throw new RuntimeException(ex);
