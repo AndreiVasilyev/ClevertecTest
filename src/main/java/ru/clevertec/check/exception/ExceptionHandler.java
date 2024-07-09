@@ -5,11 +5,6 @@ import main.java.ru.clevertec.check.service.CsvFileService;
 import main.java.ru.clevertec.check.service.ServiceProvider;
 import main.java.ru.clevertec.check.view.ConsolePrinter;
 
-import java.util.Arrays;
-
-import static main.java.ru.clevertec.check.exception.ExceptionMessageRepository.SAVE_TO_FILE_PARAM_PREFIX;
-import static main.java.ru.clevertec.check.mapper.MapperConstantRepository.PARAMETERS_SEPARATOR;
-import static main.java.ru.clevertec.check.mapper.MapperConstantRepository.SAVE_TO_FILE_PARAM_PREFIX;
 import static main.java.ru.clevertec.check.service.ServiceConstantRepository.CSV_RESULT_FILE_PATH;
 
 public class ExceptionHandler {
@@ -27,8 +22,8 @@ public class ExceptionHandler {
         CsvFileService csvFileService = ServiceProvider.getInstance().getCsvFileService();
         try {
             String saveToFile = FilePathMapper.mapSaveToFile(args);
-            if(saveToFile.isBlank()){
-                saveToFile=CSV_RESULT_FILE_PATH;
+            if (saveToFile.isBlank()) {
+                saveToFile = CSV_RESULT_FILE_PATH;
             }
             csvFileService.saveError(e, saveToFile);
             ConsolePrinter.getInstance().printErrorToConsole(e);
