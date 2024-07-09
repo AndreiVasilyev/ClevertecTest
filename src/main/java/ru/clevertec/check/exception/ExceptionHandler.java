@@ -9,7 +9,7 @@ import static main.java.ru.clevertec.check.service.ServiceConstantRepository.CSV
 
 public class ExceptionHandler {
 
-    private static ExceptionHandler instance = new ExceptionHandler();
+    private static final ExceptionHandler instance = new ExceptionHandler();
 
     private ExceptionHandler() {
     }
