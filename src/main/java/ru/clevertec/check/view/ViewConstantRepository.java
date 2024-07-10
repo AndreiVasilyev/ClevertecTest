@@ -1,4 +1,4 @@
-package main.java.ru.clevertec.check.view;
+package ru.clevertec.check.view;
 
 public class ViewConstantRepository {
 

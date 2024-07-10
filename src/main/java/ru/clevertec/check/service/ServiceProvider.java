@@ -1,13 +1,17 @@
-package main.java.ru.clevertec.check.service;
+package ru.clevertec.check.service;
 
-import main.java.ru.clevertec.check.service.impl.CsvFileServiceImpl;
+
+import ru.clevertec.check.service.impl.CsvFileServiceImpl;
+import ru.clevertec.check.service.impl.DbProductServiceImpl;
 
 public class ServiceProvider {
     private static final ServiceProvider instance = new ServiceProvider();
+    private final DbProductService dbProductService;
     private final CsvFileService csvFileService;
 
     private ServiceProvider() {
         csvFileService = new CsvFileServiceImpl();
+        dbProductService = new DbProductServiceImpl();
     }
 
     public static ServiceProvider getInstance() {
@@ -16,5 +20,9 @@ public class ServiceProvider {
 
     public CsvFileService getCsvFileService() {
         return csvFileService;
+    }
+
+    public DbProductService getDbProductService() {
+        return dbProductService;
     }
 }

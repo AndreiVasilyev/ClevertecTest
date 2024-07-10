@@ -1,8 +1,9 @@
-package main.java.ru.clevertec.check.mapper;
+package ru.clevertec.check.mapper;
 
 import java.util.Arrays;
 
-import static main.java.ru.clevertec.check.mapper.MapperConstantRepository.*;
+import static ru.clevertec.check.mapper.MapperConstantRepository.*;
+
 
 public class FilePathMapper {
 

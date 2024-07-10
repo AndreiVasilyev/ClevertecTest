@@ -1,6 +1,7 @@
-package main.java.ru.clevertec.check.exception;
+package ru.clevertec.check.exception;
 
-import static main.java.ru.clevertec.check.exception.ExceptionMessageRepository.INTERNAL_SERVER_ERROR;
+
+import static ru.clevertec.check.exception.ExceptionMessageRepository.INTERNAL_SERVER_ERROR;
 
 public class InternalServerException extends Exception {
     public InternalServerException() {

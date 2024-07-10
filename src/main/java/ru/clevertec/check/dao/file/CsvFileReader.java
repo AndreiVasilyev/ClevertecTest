@@ -1,6 +1,7 @@
-package main.java.ru.clevertec.check.dao.file;
+package ru.clevertec.check.dao.file;
 
-import main.java.ru.clevertec.check.exception.InternalServerException;
+
+import ru.clevertec.check.exception.InternalServerException;
 
 import java.util.List;
 

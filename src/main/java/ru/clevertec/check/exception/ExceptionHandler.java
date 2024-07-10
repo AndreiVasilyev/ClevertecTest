@@ -1,11 +1,12 @@
-package main.java.ru.clevertec.check.exception;
+package ru.clevertec.check.exception;
 
-import main.java.ru.clevertec.check.mapper.FilePathMapper;
-import main.java.ru.clevertec.check.service.CsvFileService;
-import main.java.ru.clevertec.check.service.ServiceProvider;
-import main.java.ru.clevertec.check.view.ConsolePrinter;
 
-import static main.java.ru.clevertec.check.service.ServiceConstantRepository.CSV_RESULT_FILE_PATH;
+import ru.clevertec.check.mapper.FilePathMapper;
+import ru.clevertec.check.service.CsvFileService;
+import ru.clevertec.check.service.ServiceProvider;
+import ru.clevertec.check.view.ConsolePrinter;
+
+import static ru.clevertec.check.service.ServiceConstantRepository.*;
 
 public class ExceptionHandler {
 

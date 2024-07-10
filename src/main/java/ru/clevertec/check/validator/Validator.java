@@ -1,11 +1,10 @@
-package main.java.ru.clevertec.check.validator;
+package ru.clevertec.check.validator;
 
-import main.java.ru.clevertec.check.entity.Check;
-import main.java.ru.clevertec.check.entity.Order;
+import ru.clevertec.check.entity.Check;
+import ru.clevertec.check.entity.Order;
 
-import java.util.Arrays;
+import static ru.clevertec.check.mapper.MapperConstantRepository.*;
 
-import static main.java.ru.clevertec.check.mapper.MapperConstantRepository.*;
 
 public class Validator {
 
@@ -23,7 +22,9 @@ public class Validator {
         String dataString = String.join(ARGUMENTS_SEPARATOR, data);
         if (!data[0].matches(PRODUCT_PARAMETER_REGEX)) return false;
         if (!dataString.contains(BALANCE_DEBIT_CARD_PARAM_PREFIX)
-                || !dataString.contains(PATH_TO_FILE_PARAM_PREFIX)
+                || !dataString.contains(DATASOURCE_URL_PARAM_PREFIX)
+                || !dataString.contains(DATASOURCE_USERNAME_PARAM_PREFIX)
+                || !dataString.contains(DATASOURCE_PASSWORD_PARAM_PREFIX)
                 || !dataString.contains(SAVE_TO_FILE_PARAM_PREFIX))
             return false;
         for (String parameter : data) {

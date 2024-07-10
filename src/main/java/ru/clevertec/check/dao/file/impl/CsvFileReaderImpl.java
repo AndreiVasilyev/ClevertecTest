@@ -1,14 +1,15 @@
-package main.java.ru.clevertec.check.dao.file.impl;
+package ru.clevertec.check.dao.file.impl;
 
-import main.java.ru.clevertec.check.dao.file.CsvFileReader;
-import main.java.ru.clevertec.check.exception.InternalServerException;
+import ru.clevertec.check.dao.file.CsvFileReader;
+import ru.clevertec.check.exception.InternalServerException;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static main.java.ru.clevertec.check.dao.DaoConstantRepository.CSV_VALUE_SEPARATOR;
+import static ru.clevertec.check.dao.DaoConstantRepository.CSV_VALUE_SEPARATOR;
+
 
 public class CsvFileReaderImpl implements CsvFileReader {
     @Override

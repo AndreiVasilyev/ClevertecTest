@@ -1,13 +1,12 @@
-package main.java.ru.clevertec.check.mapper;
+package ru.clevertec.check.mapper;
 
-import main.java.ru.clevertec.check.entity.Order;
-import main.java.ru.clevertec.check.exception.BadRequestException;
-import main.java.ru.clevertec.check.validator.Validator;
+import ru.clevertec.check.entity.Order;
 
 import java.util.Arrays;
 import java.util.HashMap;
 
-import static main.java.ru.clevertec.check.mapper.MapperConstantRepository.*;
+import static ru.clevertec.check.mapper.MapperConstantRepository.*;
+
 
 public class OrderMapper {
     public Order map(String[] values) {

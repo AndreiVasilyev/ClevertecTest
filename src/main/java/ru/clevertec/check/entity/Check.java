@@ -1,4 +1,4 @@
-package main.java.ru.clevertec.check.entity;
+package ru.clevertec.check.entity;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static main.java.ru.clevertec.check.view.ViewConstantRepository.PRODUCTS_TEMPLATE;
 
 public class Check {
     LocalDateTime dateTime;

@@ -1,25 +1,26 @@
-package main.java.ru.clevertec.check.service.impl;
+package ru.clevertec.check.service.impl;
 
-import main.java.ru.clevertec.check.dao.DaoProvider;
-import main.java.ru.clevertec.check.dao.file.CsvFileReader;
-import main.java.ru.clevertec.check.dao.file.CsvFileWriter;
-import main.java.ru.clevertec.check.entity.Check;
-import main.java.ru.clevertec.check.entity.DiscountCard;
-import main.java.ru.clevertec.check.entity.Product;
-import main.java.ru.clevertec.check.entity.Stock;
-import main.java.ru.clevertec.check.exception.InternalServerException;
-import main.java.ru.clevertec.check.mapper.DiscountCardMapper;
-import main.java.ru.clevertec.check.mapper.FilePathMapper;
-import main.java.ru.clevertec.check.mapper.ProductMapper;
-import main.java.ru.clevertec.check.service.CsvFileService;
-import main.java.ru.clevertec.check.view.FileViewFormatter;
+import ru.clevertec.check.dao.DaoProvider;
+import ru.clevertec.check.dao.file.CsvFileReader;
+import ru.clevertec.check.dao.file.CsvFileWriter;
+import ru.clevertec.check.entity.Check;
+import ru.clevertec.check.entity.DiscountCard;
+import ru.clevertec.check.entity.Product;
+import ru.clevertec.check.entity.Stock;
+import ru.clevertec.check.exception.InternalServerException;
+import ru.clevertec.check.mapper.DiscountCardMapper;
+import ru.clevertec.check.mapper.FilePathMapper;
+import ru.clevertec.check.mapper.ProductMapper;
+import ru.clevertec.check.service.CsvFileService;
+import ru.clevertec.check.view.FileViewFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static main.java.ru.clevertec.check.service.ServiceConstantRepository.*;
+import static ru.clevertec.check.service.ServiceConstantRepository.*;
+
 
 public class CsvFileServiceImpl implements CsvFileService {
 

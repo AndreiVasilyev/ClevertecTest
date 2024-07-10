@@ -1,4 +1,4 @@
-package main.java.ru.clevertec.check.exception;
+package ru.clevertec.check.exception;
 
 public class ExceptionMessageRepository {
     public static String NOT_ENOUGH_MONEY = "NOT ENOUGH MONEY";

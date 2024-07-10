@@ -1,14 +1,15 @@
-package main.java.ru.clevertec.check.view;
+package ru.clevertec.check.view;
 
-import main.java.ru.clevertec.check.entity.Check;
-import main.java.ru.clevertec.check.entity.DiscountCard;
-import main.java.ru.clevertec.check.entity.Product;
+import ru.clevertec.check.entity.Check;
+import ru.clevertec.check.entity.DiscountCard;
+import ru.clevertec.check.entity.Product;
 
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 
-import static main.java.ru.clevertec.check.view.ViewConstantRepository.*;
+import static ru.clevertec.check.view.ViewConstantRepository.*;
+
 
 public class FileViewFormatter {
 

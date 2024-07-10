@@ -1,6 +1,7 @@
-package main.java.ru.clevertec.check.mapper;
+package ru.clevertec.check.mapper;
 
-import main.java.ru.clevertec.check.entity.DiscountCard;
+
+import ru.clevertec.check.entity.DiscountCard;
 
 import java.util.List;
 

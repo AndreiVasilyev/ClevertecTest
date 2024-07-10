@@ -1,6 +1,7 @@
-package main.java.ru.clevertec.check.exception;
+package ru.clevertec.check.exception;
 
-import static main.java.ru.clevertec.check.exception.ExceptionMessageRepository.BAD_REQUEST;
+
+import static ru.clevertec.check.exception.ExceptionMessageRepository.BAD_REQUEST;
 
 public class BadRequestException extends Exception {
 

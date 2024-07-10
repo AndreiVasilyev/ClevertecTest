@@ -1,7 +1,7 @@
-package main.java.ru.clevertec.check.dao.file.impl;
+package ru.clevertec.check.dao.file.impl;
 
-import main.java.ru.clevertec.check.dao.file.CsvFileWriter;
-import main.java.ru.clevertec.check.exception.InternalServerException;
+import ru.clevertec.check.dao.file.CsvFileWriter;
+import ru.clevertec.check.exception.InternalServerException;
 
 import java.io.FileWriter;
 import java.io.IOException;

@@ -1,9 +1,10 @@
-package main.java.ru.clevertec.check.service;
+package ru.clevertec.check.service;
 
-import main.java.ru.clevertec.check.entity.Check;
-import main.java.ru.clevertec.check.entity.DiscountCard;
-import main.java.ru.clevertec.check.entity.Stock;
-import main.java.ru.clevertec.check.exception.InternalServerException;
+
+import ru.clevertec.check.entity.Check;
+import ru.clevertec.check.entity.DiscountCard;
+import ru.clevertec.check.entity.Stock;
+import ru.clevertec.check.exception.InternalServerException;
 
 import java.util.List;
 

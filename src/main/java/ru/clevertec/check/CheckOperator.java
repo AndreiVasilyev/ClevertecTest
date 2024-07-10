@@ -1,20 +1,20 @@
-package main.java.ru.clevertec.check;
-
-import main.java.ru.clevertec.check.entity.*;
-import main.java.ru.clevertec.check.exception.BadRequestException;
-import main.java.ru.clevertec.check.exception.InternalServerException;
-import main.java.ru.clevertec.check.exception.NotEnoughMoneyException;
-import main.java.ru.clevertec.check.mapper.FilePathMapper;
-import main.java.ru.clevertec.check.mapper.OrderMapper;
-import main.java.ru.clevertec.check.service.CsvFileService;
-import main.java.ru.clevertec.check.service.ServiceProvider;
-import main.java.ru.clevertec.check.validator.Validator;
-import main.java.ru.clevertec.check.view.ConsolePrinter;
+package ru.clevertec.check;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+
+
+import ru.clevertec.check.entity.*;
+import ru.clevertec.check.exception.BadRequestException;
+import ru.clevertec.check.exception.InternalServerException;
+import ru.clevertec.check.exception.NotEnoughMoneyException;
+import ru.clevertec.check.mapper.FilePathMapper;
+import ru.clevertec.check.mapper.OrderMapper;
+import ru.clevertec.check.service.CsvFileService;
+import ru.clevertec.check.service.ServiceProvider;
+import ru.clevertec.check.validator.Validator;
+import ru.clevertec.check.view.ConsolePrinter;
+
 
 public class CheckOperator {
 
@@ -38,8 +38,8 @@ public class CheckOperator {
         if (!Validator.getInstance().isInputDataValid(args)) {
             throw new BadRequestException();
         }
-        saveToFile=FilePathMapper.mapSaveToFile(args);
-        stock = ServiceProvider.getInstance().getCsvFileService().readStock(args);
+        saveToFile = FilePathMapper.mapSaveToFile(args);
+        stock = ServiceProvider.getInstance().getDbProductService().getStock(args);
         Order order = new OrderMapper().map(args);
         Check check = new Check();
         addProductsToCheck(check, order);
@@ -52,7 +52,7 @@ public class CheckOperator {
 
     public void save(Check check) throws InternalServerException {
         CsvFileService csvFileService = ServiceProvider.getInstance().getCsvFileService();
-        csvFileService.saveCheck(check,saveToFile);
+        csvFileService.saveCheck(check, saveToFile);
     }
 
     public void printToConsole(Check check) {
